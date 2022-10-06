@@ -22,7 +22,32 @@ body {
 }
 
 
+.game-container {
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
 
+.header {
+    background-color: #1C90FF;
+    padding: 2rem;
+}
 
+.player-container {
+    padding: 0 2rem;
+}
 
+.computer-container {
+    padding: 0 2rem;
+}
+
+.reset-container {
+    padding: 0 2rem;
+}
+
+.result-container {
+    text-align: center;
+}
 
