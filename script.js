@@ -7,6 +7,7 @@ const computerChoice = document.querySelector('.computer-choice');
 const playerScoreEl = document.querySelector('.player-score');
 const computerScoreEl = document.querySelector('.computer-score');
 const resultContainerEL = document.querySelector('.result-container');
+const resetBtn = document.querySelector('.reset-btn');
 
 
 const choices = {
@@ -39,7 +40,7 @@ const checkResult = function (playerSelection, computerSelection) {
   }
 
   if (playerSelection === computerSelection) {
-    resultContainerEL.textContent = 'It\'s a tie!'
+    resultContainerEL.textContent = 'It\'s a tie!';
   }
 
   if (choiceComputer.defeats.find(el => el === playerSelection)) {
@@ -70,4 +71,16 @@ playerContainer.addEventListener('click', function (e) {
   computerChoice.textContent = ` --- ${computerSelection.dataset.choice}`;
 
   checkResult(clickedSelection.dataset.choice, computerSelection.dataset.choice);
+});
+
+resetBtn.addEventListener('click', function () {
+  playerScore = 0;
+  computerScore = 0;
+  playerChoice.textContent = '';
+  computerChoice.textContent = '';
+  playerIcons.forEach((icon) => icon.classList.remove('color-black'));
+  computerIcons.forEach((icon) => icon.classList.remove('color-black'));
+  playerScoreEl.textContent = `${playerScore}`;
+  computerScoreEl.textContent = `${computerScore}`;
+  resultContainerEL.textContent = 'Let\'s Play!';
 });
