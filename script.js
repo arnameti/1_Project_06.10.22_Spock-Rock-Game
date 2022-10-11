@@ -6,6 +6,7 @@ const playerChoice = document.querySelector('.player-choice');
 const computerChoice = document.querySelector('.computer-choice');
 const playerScoreEl = document.querySelector('.player-score');
 const computerScoreEl = document.querySelector('.computer-score');
+const resultContainerEL = document.querySelector('.result-container');
 
 
 const choices = {
@@ -33,15 +34,19 @@ const checkResult = function (playerSelection, computerSelection) {
 
   if (choicePlayer.defeats.find(el => el === computerSelection)) {
     playerScore++;
- }
+    playerScoreEl.textContent = `${playerScore}`;
+    resultContainerEL.textContent = 'You Won!';
+  }
 
   if (playerSelection === computerSelection) {
-    console.log('It\'s a tie!');
+    resultContainerEL.textContent = 'It\'s a tie!'
   }
 
   if (choiceComputer.defeats.find(el => el === playerSelection)) {
     computerScore++;
- }
+    computerScoreEl.textContent = `${computerScore}`;
+    resultContainerEL.textContent = 'You Lost!';
+  }
 };
 
 playerContainer.addEventListener('click', function (e) {
