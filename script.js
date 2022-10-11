@@ -1,5 +1,8 @@
 'use strict';
-
+const playerContainer = document.querySelector('.player-container');
+const computerContainer = document.querySelector('.computer-container');
+const playerIcons = document.querySelectorAll('.player-icon');
+const computerIcons = document.querySelectorAll('.computer-icon');
 
 
 const choices = {
@@ -11,5 +14,12 @@ const choices = {
 };
 
 
+playerContainer.addEventListener('click', function (e) {
+  const clicked = e.target.closest('.player-icon');
 
+  if (!clicked) return;
+
+  playerIcons.forEach((icon) => icon.classList.remove('color-black'));
+  clicked.classList.add('color-black');
+});
 
