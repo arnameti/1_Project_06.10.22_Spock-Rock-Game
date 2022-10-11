@@ -66,6 +66,10 @@ body {
     color: dodgerblue;
 }
 
+.player-choice {
+    color: dodgerblue;
+}
+
 .computer-container {
     padding: 0 2rem;
     margin-bottom: 4rem;
@@ -77,6 +81,10 @@ body {
 }
 
 .computer-container > .icons {
+    color: red;
+}
+
+.computer-choice {
     color: red;
 }
 
