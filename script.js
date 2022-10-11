@@ -1,10 +1,11 @@
 'use strict';
 const playerContainer = document.querySelector('.player-container');
-const computerContainer = document.querySelector('.computer-container');
 const playerIcons = document.querySelectorAll('.player-icon');
 const computerIcons = document.querySelectorAll('.computer-icon');
 const playerChoice = document.querySelector('.player-choice');
 const computerChoice = document.querySelector('.computer-choice');
+const playerScoreEl = document.querySelector('.player-score');
+const computerScoreEl = document.querySelector('.computer-score');
 
 
 const choices = {
@@ -15,21 +16,44 @@ const choices = {
   spock: {name: 'Spock', defeats: ['scissors', 'rock']},
 };
 
+let playerScore = 0;
+let computerScore = 0;
+
 const getRandomInt = function (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
-}
+};
 
+const checkResult = function (playerSelection, computerSelection) {
+  playerSelection = playerSelection.toLowerCase();
+  computerSelection = computerSelection.toLowerCase();
+
+
+  const choicePlayer = choices[playerSelection];
+  const choiceComputer = choices[computerSelection];
+
+  if (choicePlayer.defeats.find(el => el === computerSelection)) {
+    playerScore++;
+ }
+
+  if (playerSelection === computerSelection) {
+    console.log('It\'s a tie!');
+  }
+
+  if (choiceComputer.defeats.find(el => el === playerSelection)) {
+    computerScore++;
+ }
+};
 
 playerContainer.addEventListener('click', function (e) {
   // player selection
-  const clicked = e.target.closest('.player-icon');
+  const clickedSelection = e.target.closest('.player-icon');
 
-  if (!clicked) return;
+  if (!clickedSelection) return;
 
   // setting color and name for player selection
   playerIcons.forEach((icon) => icon.classList.remove('color-black'));
-  clicked.classList.add('color-black');
-  playerChoice.textContent = ` --- ${clicked.dataset.choice}`;
+  clickedSelection.classList.add('color-black');
+  playerChoice.textContent = ` --- ${clickedSelection.dataset.choice}`;
 
   // computer selection
   const randomInt = getRandomInt(0, 4);
@@ -38,6 +62,7 @@ playerContainer.addEventListener('click', function (e) {
   // setting color and name for computer selection
   computerIcons.forEach((icon) => icon.classList.remove('color-black'));
   computerSelection.classList.add('color-black');
-  computerChoice.textContent = ` --- ${computerSelection.dataset.choice}`
-});
+  computerChoice.textContent = ` --- ${computerSelection.dataset.choice}`;
 
+  checkResult(clickedSelection.dataset.choice, computerSelection.dataset.choice);
+});
